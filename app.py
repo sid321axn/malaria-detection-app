@@ -24,7 +24,7 @@ MODEL_PATH = 'models/my_model.h5'
 
 #Load your trained model
 model = load_model(MODEL_PATH)
-model._make_predict_function()          # Necessary to make everything ready to run on the GPU ahead of time
+#model._make_predict_function()          # Necessary to make everything ready to run on the GPU ahead of time
 print('Model loaded. Start serving...')
 
 # You can also use pretrained model from Keras

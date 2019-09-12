@@ -43,7 +43,8 @@ def model_predict(img_path, model):
 
    
     preds = model.predict(img)
-    return preds
+    pred = np.argmax(preds,axis = 1)
+    return pred
 
 
 @app.route('/', methods=['GET'])
@@ -65,14 +66,14 @@ def upload():
         f.save(file_path)
 
         # Make prediction
-        preds = model_predict(file_path, model)
+        pred = model_predict(file_path, model)
         os.remove(file_path)#removes file from the server after prediction has been returned
 
         # Arrange the correct return according to the model. 
 		# In this model 1 is Pneumonia and 0 is Normal.
         str1 = 'Malaria Parasitized'
         str2 = 'Normal'
-        if preds == 0:
+        if pred[0] == 0:
             return str1
         else:
             return str2
